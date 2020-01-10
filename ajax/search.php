@@ -29,6 +29,19 @@ while($row = $result->fetch_assoc()){
     // print_r($row);
     $cars[] = $row; // append row to the $cars array we made above the while statement.
 }
+
+
+
+
+$id = isset($_POST["id"]) ? $_POST["id"] : false;
+
+$delete_query = " DELETE FROM cars WHERE id =". $id;
+
+$db->query($delete_query);
+
+
+
+
 $db->close(); // can close your connection when you are finished.  helps with speed
 
 echo json_encode($cars); //echoeing special text known as json. returns results in javascript object notation.

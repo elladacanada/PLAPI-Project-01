@@ -79,7 +79,7 @@ function __($input){
                     echo "<td>" . __($row["model"]) . "</td>";
                     echo "<td>" . __($row["year"]) . "</td>";
                     echo "<td>" . __($row["nickname"]) . "</td>";
-                    echo "<td><a class='delete-button'id='".  $row['id'] ."' href='#'>". "delete" ."</a></td>";
+                    echo "<td><a class='delete-button' id='".  $row['id'] ."' href='#'>". "delete" ."</a></td>";
                     
                     echo "</tr>";
 
