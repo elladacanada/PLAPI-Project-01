@@ -2,7 +2,7 @@
 
 $(document).ready(function(){ //document is loaded and ready to run
 
-    
+    var del_id = "";
     var search_model_query = "";
     var search_nickname_query = "";
     var selected_year = 0;
@@ -38,6 +38,40 @@ $(document).ready(function(){ //document is loaded and ready to run
 
     });
 
+
+    //on click of X a tag, delete database row
+    $("#search-results").on("click", ".delete-button", function(e){
+        e.preventDefault();
+        del_id = $(this).attr('id');
+        search_input();
+        
+        
+        // var el = $(this);     
+
+
+        
+        // $.post( // url, then object, then function
+        //     'ajax/delete.php', //first parameter is url.
+        //     {
+        //         id: del_id
+        
+        //     }, // the data object to be passed to file via post.
+        //     function(data){
+        //         if(data ){
+        //             // console.log(data);
+        //             //Remove row from HTML Table
+        //             $(el).closest('tr').css('background','tomato');
+        //             $(el).closest('tr').fadeOut(800,function(){
+        //                $(this).remove();
+        //             });
+        //              }else{
+        //             alert('Invalid ID.');
+        //              }
+
+        //     }
+        // );
+    });
+
     /*******************************
     *
     *
@@ -55,6 +89,7 @@ $(document).ready(function(){ //document is loaded and ready to run
         $.post( // url, then object, then function
             'ajax/search.php', //first parameter is url.
             {
+                id: del_id,
                 search_model: search_model_query,
                 search_nickname: search_nickname_query, // give data a name, then the value (variable we set above).
                 year: selected_year
@@ -70,7 +105,7 @@ $(document).ready(function(){ //document is loaded and ready to run
                  // function represents a for each ( index, object)
                  $.each(cars, function(i, car){
                     //console.log(car);
-                    table_rows += "<tr><td>"+car.make+"</td><td>"+car.model+"</td><td>"+car.year+"</td><td>"+car.nickname+"</td></tr>";
+                    table_rows += "<tr><td>"+car.make+"</td><td>"+car.model+"</td><td>"+car.year+"</td><td>"+car.nickname+"</td><td><a href='#' class='delete-button' id='"+car.id+"'>delete</a></td></tr>";
                  });
 
                  $("#search-results").html(table_rows);
@@ -78,31 +113,6 @@ $(document).ready(function(){ //document is loaded and ready to run
         );
     } // end of search_input
 
-    //on click of X a tag, delete database row
-    $("#search-results").on("click", ".delete-button", function(e){
-        e.preventDefault();
-        var del_id = $(this).attr('id');
-        var el = $(this);     
-        $.post( // url, then object, then function
-            'ajax/delete.php', //first parameter is url.
-            {
-                id: del_id
-        
-            }, // the data object to be passed to file via post.
-            function(data){
-                if(data ){
-                    // console.log(data);
-                    //Remove row from HTML Table
-                    $(el).closest('tr').css('background','tomato');
-                    $(el).closest('tr').fadeOut(800,function(){
-                       $(this).remove();
-                    });
-                     }else{
-                    alert('Invalid ID.');
-                     }
-
-            }
-        );
-    });
+    
 
 }); //end of document
