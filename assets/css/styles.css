@@ -1,3 +1,81 @@
-h1, h2, h3, h4, h5, h6  {
-    color: red;
+:root {
+    --clr-primary: rgb(99, 191, 198);
+    --clr-light: rgb(241, 243, 244);
+    --clr-dark: rgb(51, 56, 64);
 }
+
+h1, h2, h3, h4, h5, h6  {
+    color: var(--clr-primary);
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+html, body {
+    background-color: var(--clr-dark);
+    
+}
+
+tr {
+    color: var(--clr-light)!important;
+}
+
+.modal-content {
+    background-color: var(--clr-light);
+}
+
+button{
+    background: var(--clr-primary)!important;
+    border: 2px outset var(--clr-light)!important;
+    
+}
+button:active{
+    background: var(--clr-primary)!important;
+    border: 2px inset var(--clr-light)!important;
+}
+
+.btn i {
+    color: var(--clr-dark);
+}
+table{
+    border: 4px ridge rgba(243, 243, 243, 0.055);
+    
+}
+tbody {
+    padding: 10px 20px!important;
+}
+
+th {
+    border-bottom: 1px dotted var(--clr-primary)!important;
+    padding: 10px 5px!important;
+}
+
+
+
+
+
+
+/* hover text start */
+.hovertextshow {
+    position: relative;
+}
+
+.hovertext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    top: -5px;
+    left: 105%;
+    z-index: 1;
+  }
+  
+ 
+  .hovertextshow:hover .hovertext {
+    visibility: visible;
+  }

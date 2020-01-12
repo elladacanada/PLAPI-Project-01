@@ -23,7 +23,7 @@ function __($input){
     <div class="container my-5">
         <div class="row">
             <div class="col-12">
-                <h3>Car Search DB</h3>
+                <h1>PLAPI Project 01 - Car Search DB - NRomanakis</h1>
             </div>
         </div>
         <hr>
@@ -55,41 +55,44 @@ function __($input){
                 </form>
             </div>
         </div>
-        <table class="table">
-            <thead>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Nickname</th>
-                <th>Delete</th>
+        <table class="table table-striped table-borderless table-hover table-dark table-sm">
+            <thead >
+                <th><h3>Make</h3></th>
+                <th><h3>Model</h3></th>
+                <th><h3>Year</h3></th>
+                <th><h3>Nickname</h3></th>
+                <th><h3>Delete</h3></th>
             </thead>
             <tbody id="search-results">
-
-                <?php
-                //select from db
-                $sql = "SELECT * FROM cars";
-                //store results
-                $results = $db->query($sql);
-                //fetch results
-                while($row = $results->fetch_assoc()){
-                    
-                    echo "<tr>";
-                    //this double underscore is a function variable we saved at top pf page
-                    echo "<td>" . __($row["make"]) . "</td>";
-                    echo "<td>" . __($row["model"]) . "</td>";
-                    echo "<td>" . __($row["year"]) . "</td>";
-                    echo "<td>" . __($row["nickname"]) . "</td>";
-                    echo "<td><a class='delete-button' id='".  $row['id'] ."' href='#'>". "delete" ."</a></td>";
-                    
-                    echo "</tr>";
-
-                }
-                
-                ?>
-
             </tbody>
+            <tfoot id="newCar">
+                <th><input type="text" class="form-control" placeholder="Make" id="newMake"></th>
+                <th><input type="text" class="form-control" placeholder="Model" id="newModel"></th>
+                <th><input type="text" class="form-control" placeholder="Year" id="newYear"></th>
+                <th><input type="text" class="form-control" placeholder="Nickname" id="newNickname"></th>
+                <th class="text-center">
+                        
+                        <button class="btn hovertextshow" data-action="insert-car"><span class="hovertext">Add New Car?</span><i class="fas fa-plus"></i></button>
+                    
+                </th>
+            </tfoot>
         </table>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="deleteCarAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-body text-center">
+        Are you sure you want to delete this car?
+        </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-action="confirm-delete" >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

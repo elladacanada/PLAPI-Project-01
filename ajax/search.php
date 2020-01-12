@@ -9,6 +9,7 @@ $year = isset($_POST["year"]) ? $_POST["year"] : false;
 $search_model = $db->real_escape_string(trim($search_model)); //checks if string from post has strange characters and prevents from sql injection attack
 $search_nickname = $db->real_escape_string(trim($search_nickname)); 
 $year = $db->real_escape_string($year);
+
 if($search_model || $search_nickname || $year) {
 
     $search_sql = " SELECT * FROM cars
@@ -29,18 +30,6 @@ while($row = $result->fetch_assoc()){
     // print_r($row);
     $cars[] = $row; // append row to the $cars array we made above the while statement.
 }
-
-
-
-
-$id = isset($_POST["id"]) ? $_POST["id"] : false;
-
-$delete_query = " DELETE FROM cars WHERE id =". $id;
-
-$db->query($delete_query);
-
-
-
 
 $db->close(); // can close your connection when you are finished.  helps with speed
 
